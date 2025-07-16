@@ -1,0 +1,25 @@
+<h3>DC ANIMATED MOVIES WATCH ORDER</h3>
+<div class="whole-table">
+  <table class="table table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>S.NO</th>
+        <th>Title</th>
+        <th>Release Date</th>
+        <th>Genre</th>
+        <th>Rating</th>
+        <th>Duration</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let movie of movies; let i = index;">
+        <td>{{i+1}}</td>
+        <td>{{movie.title}}</td>
+        <td>{{movie.ReleaseDate}}</td>
+        <td>{{movie.Genre}}</td>
+        <td>{{movie.Rating}}</td>
+        <td>{{movie.Duration}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
