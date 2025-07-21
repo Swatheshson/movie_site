@@ -10,6 +10,7 @@
           <th>Genre</th>
           <th>Rating</th>
           <th>Duration</th>
+          <th>Watch Status</th>
         </tr>
       </thead>
       <tbody>
@@ -22,8 +23,10 @@
             <span class="rating-star">★</span> {{ movie.Rating }}
           </td>
           <td>{{ movie.Duration }}</td>
+          <td> <input type="checkbox" [(ngModel)] ="movie.selected"> </td>
         </tr>
       </tbody>
     </table>
+    <button class ="btn btn-primary" (click) = "logSelectedMovies()" > Earn Your Badge</button>
   </div>
 </div>
