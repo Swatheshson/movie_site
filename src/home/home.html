@@ -1,2 +1,165 @@
-<p>home works!</p>
+<div class="home-container">
+  <!-- Background Animation -->
+  <div class="background-animation">
+    <div class="floating-icon" style="--delay: 0s;">🦸‍♂️</div>
+    <div class="floating-icon" style="--delay: 2s;">⚡</div>
+    <div class="floating-icon" style="--delay: 4s;">🦇</div>
+    <div class="floating-icon" style="--delay: 6s;">🛡️</div>
+    <div class="floating-icon" style="--delay: 8s;">🎬</div>
+  </div>
 
+  <!-- Main Content -->
+  <div class="content-wrapper">
+    <!-- Header -->
+    <div class="header">
+      <h1 class="main-title">
+        <span class="title-icon">🎬</span>
+        DC Animated Universe
+        <span class="title-subtitle">Journey Begins Here</span>
+      </h1>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-container" *ngIf="!showResults">
+      <div class="progress-bar">
+        <div class="progress-fill" [style.width.%]="getProgressPercentage()"></div>
+      </div>
+      <div class="progress-text">
+        Step {{ currentStep }} of {{ totalSteps }}
+      </div>
+    </div>
+
+    <!-- Question Container -->
+    <div class="question-container" *ngIf="!showResults">
+      
+      <!-- Question 1: Name -->
+      <div class="question-card" *ngIf="currentStep === 1">
+        <div class="question-header">
+          <span class="question-emoji">🎬</span>
+          <h2 class="question-title">Hey there, superhero! What's your name?</h2>
+          <p class="question-subtitle">Friendly and themed — helps personalize the experience</p>
+        </div>
+        
+        <div class="input-container">
+          <input 
+            type="text" 
+            [(ngModel)]="userResponses.name" 
+            placeholder="Enter your superhero name..."
+            class="name-input"
+            (keyup.enter)="userResponses.name.trim() && nextStep()"
+          >
+          <div class="input-decoration"></div>
+        </div>
+
+        <div class="button-container">
+          <button 
+            class="next-btn" 
+            [disabled]="!userResponses.name.trim()"
+            (click)="nextStep()"
+          >
+            Continue
+            <span class="btn-icon">→</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Question 2: Ready to Explore -->
+      <div class="question-card" *ngIf="currentStep === 2">
+        <div class="question-header">
+          <span class="question-emoji">🍿</span>
+          <h2 class="question-title">Ready to journey through the DC Animated Universe in the perfect watch order?</h2>
+        </div>
+
+        <div class="options-container">
+          <div 
+            class="option-card" 
+            *ngFor="let option of readyOptions"
+            (click)="selectReady(option.value)"
+            [class.selected]="userResponses.readyToExplore === option.value"
+          >
+            <div class="option-emoji">{{ option.emoji }}</div>
+            <div class="option-text">{{ option.label }}</div>
+            <div class="option-hover-effect"></div>
+          </div>
+        </div>
+
+        <div class="navigation-buttons">
+          <button class="back-btn" (click)="previousStep()">
+            <span class="btn-icon">←</span>
+            Back
+          </button>
+        </div>
+      </div>
+
+      <!-- Question 3: Favorite Character -->
+      <div class="question-card" *ngIf="currentStep === 3">
+        <div class="question-header">
+          <span class="question-emoji">🦸‍♂️</span>
+          <h2 class="question-title">Which DC character do you vibe with the most?</h2>
+        </div>
+
+        <div class="character-grid">
+          <div 
+            class="character-card" 
+            *ngFor="let character of characterOptions"
+            (click)="selectCharacter(character.value)"
+            [class.selected]="userResponses.favoriteCharacter === character.value"
+            [style.--character-color]="character.color"
+          >
+            <div class="character-emoji">{{ character.emoji }}</div>
+            <div class="character-name">{{ character.label }}</div>
+            <div class="character-description">{{ character.description }}</div>
+            <div class="character-glow"></div>
+          </div>
+        </div>
+
+        <div class="navigation-buttons">
+          <button class="back-btn" (click)="previousStep()">
+            <span class="btn-icon">←</span>
+            Back
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Page -->
+    <div class="results-container" *ngIf="showResults">
+      <div class="results-card">
+        <div class="results-header">
+          <span class="results-emoji">🎉</span>
+          <h2 class="results-title">Welcome to the DC Universe, {{ userResponses.name }}!</h2>
+        </div>
+
+        <div class="results-summary">
+          <div class="summary-item">
+            <span class="summary-label">Your Journey Status:</span>
+            <span class="summary-value">{{ getSelectedReady()?.label }}</span>
+          </div>
+          
+          <div class="summary-item" *ngIf="getSelectedCharacter()">
+            <span class="summary-label">Your DC Spirit:</span>
+            <div class="character-result">
+              <span class="character-emoji-large">{{ getSelectedCharacter()?.emoji }}</span>
+              <div>
+                <div class="character-name-large">{{ getSelectedCharacter()?.label }}</div>
+                <div class="character-desc-small">{{ getSelectedCharacter()?.description }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="results-actions">
+          <button class="explore-btn" (click)="proceedToDC()">
+            <span class="btn-icon">🚀</span>
+            Explore DC Universe
+          </button>
+          
+          <button class="restart-btn" (click)="restart()">
+            <span class="btn-icon">🔄</span>
+            Start Over
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
