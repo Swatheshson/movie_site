@@ -146,7 +146,7 @@ export class DcPage {
   ];
 
   logSelectedMovies() {
-    const selectedMovies = this.movies.filter(mov => mov.selected);
+    const selectedMovies = this.movies.filter(mov => mov.selected); 
     console.log('Selected Movies:', selectedMovies);
 
     if (this.movies.length - selectedMovies.length === 0) {
