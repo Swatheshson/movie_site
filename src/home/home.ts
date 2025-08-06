@@ -15,6 +15,7 @@ interface UserResponse {
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
+
 export class Home {
   currentStep = 1;
   totalSteps = 3;
