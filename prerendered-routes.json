@@ -1,7 +1,7 @@
 {
   "routes": {
-    "/movie_site": {},
-    "/movie_site/dcpage": {},
-    "/movie_site/home": {}
+    "/movie-site": {},
+    "/movie-site/dcpage": {},
+    "/movie-site/home": {}
   }
 }

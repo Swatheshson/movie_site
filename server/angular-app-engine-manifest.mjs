@@ -1,6 +1,6 @@
 
 export default {
-  basePath: '/movie_site',
+  basePath: '/movie-site',
   supportedLocales: {
   "en-US": ""
 },
