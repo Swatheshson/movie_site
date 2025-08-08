@@ -1,0 +1,7 @@
+{
+  "routes": {
+    "/movie_site": {},
+    "/movie_site/dc": {},
+    "/movie_site/home": {}
+  }
+}
